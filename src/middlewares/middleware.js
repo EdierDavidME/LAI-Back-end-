@@ -14,7 +14,16 @@ const auth = (req, res, next) => {
         res.status(response.status).send(response.message);
         return;
       });
-  } else res.status(401).send({ message: "No tiene autorización" });
+  } else res.status(401).send({ message: "No token provided" });
+};
+
+const whitelist = ["http://localhost:4200", "http://localhost:3000/"];
+const corsOptions = {
+  origin: (origin, callback) => {
+    console.log("+---------Origin: ", origin);
+    if (whitelist.indexOf(origin) !== -1) callback(null, true);
+    else callback(new Error("Not allowes by CORS"));
+  },
 };
 
 const login = (req, res, next) => {
@@ -44,4 +53,5 @@ module.exports = {
   csrfToken,
   csrf,
   auth,
+  corsOptions,
 };

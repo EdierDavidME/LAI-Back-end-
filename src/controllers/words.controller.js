@@ -1,5 +1,5 @@
-const User = require("./../models/users");
-const Word = require("./../models/words");
+const User = require("../models/Users");
+const Word = require("../models/Words");
 
 const index = (req, res) => {
   // res.send({ message : "index ok"});
@@ -43,9 +43,9 @@ const neWord = async (req, res, next) => {
       link_get: req.body.link_get,
       image_get: req.body.image_get,
     });
-    word_get.save();
+    await word_get.save();
   } else {
-    Word.findByIdAndUpdate(
+    await Word.findByIdAndUpdate(
       req.body._id,
       { $set: req.body },
       { new: true },
@@ -54,7 +54,7 @@ const neWord = async (req, res, next) => {
       }
     );
   }
-  res.status(200).send({ message: "Data saved successfully" });
+  res.status(201).send({ message: "Data saved successfully" });
   //   });
 };
 

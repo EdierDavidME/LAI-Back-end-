@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const palabrasController = require("../controllers/controller_words");
-const { auth } = require("../middlewares/autenToken");
+const palabrasController = require("../controllers/words.controller");
+const { auth, corsOptions } = require("../middlewares/middleware");
+const cors = require("cors");
 
 router
   .get("/", palabrasController.index)
   .get("/new")
   .get("/my_words", auth , palabrasController.myWords)
   .get("/search", palabrasController.searchWord)
-  .get("/edit/:value")
+  .get("/edit/:value",auth)
   .post(
     "/edit/:value",
     auth,

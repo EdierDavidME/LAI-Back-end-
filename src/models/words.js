@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const crypto = require('crypto');
-mongoose.set('useFindAndModify', false);
 
 let wordSchema = new Schema({
   id: { type: String },
@@ -24,3 +23,6 @@ wordSchema.methods.gravatar = ()=>{
 
 let Word = mongoose.model('Word', wordSchema);
 module.exports = Word;
+
+// boostboy
+// multer

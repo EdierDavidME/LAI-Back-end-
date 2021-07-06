@@ -1,8 +1,8 @@
 // const {  } = require('../middlewares/autenToken');
 const service = require("../services/index");
-const User = require("../models/users");
+const User = require("../models/Users");
 const bcrypt = require("bcrypt");
-const schema = require("../schemas/schema_user");
+const schema = require("../schemas/user.schema");
 
 const updateUsername = async (req, res) => {
   try {

@@ -4,10 +4,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const session = require('express-session');
+const cors = require('cors');
+const { createRoles } = require('./services/initialSetup');
 
-
-var app = express();
-
+const app = express();
+createRoles(); // creación de roles
+app.use(cors()); // Seguridad API rest Baneo
 
 app.use(cookieParser());
 app.use(session({
@@ -32,11 +34,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname,'public')));
 
 // Rutas
-app.use('/', require('./routes/index'));
-app.use('/words', require('./routes/word'));
-app.use('/signup', require('./routes/signup'));
-app.use('/login', require('./routes/login'));
-app.use('/config', require('./routes/user'));
+app.use('/api', require('./routes/index.routes'));
+app.use('/api/words', require('./routes/word.routes'));
+app.use('/api/signup', require('./routes/signup.routes'));
+app.use('/api/login', require('./routes/login.routes'));
+app.use('/api/config', require('./routes/user.routes'));
 
 // Formato paginas
 app.use(bodyParser.json());
