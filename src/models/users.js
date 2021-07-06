@@ -12,11 +12,19 @@ let userSchema = new Schema(
     avatar: { type: String },
     password: { type: String, required: true },
     singUp: { type: Date, default: Date.now() },
-    lastLogin: {type: Date},
-    roles: [{
-      ref: "Rol",
-      type: Schema.Types.ObjectId
-    }]
+    lastLogin: { type: Date },
+    roles: [
+      {
+        ref: "Rol",
+        type: Schema.Types.ObjectId,
+      },
+    ],
+    books: [
+      {
+        ref: "Word",
+        type: Schema.Types.ObjectId,
+      },
+    ],
   },
   {
     timestamps: true,

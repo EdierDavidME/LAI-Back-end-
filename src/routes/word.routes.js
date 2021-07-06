@@ -16,7 +16,7 @@ router
     palabrasController.findWord,
     palabrasController.editWord
   )
-  .post(
+  .delete(
     "/delete/:value",
     auth,
     palabrasController.findWord,
