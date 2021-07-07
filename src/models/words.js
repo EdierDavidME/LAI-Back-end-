@@ -51,7 +51,8 @@ wordSchema.methods.gravatar = () => {
     return "http://0.gravatar.com/avatar/c7dba64c1f931b5307d8cfcb5dfd37ba";
 
   const md5 = crypto.creatHash("md5").update(this.image_get).digest("hex");
-  return `${md5}`;
+  // console.log("md5: ",md5);
+  return md5;
 };
 
 let Word = mongoose.model("Word", wordSchema);

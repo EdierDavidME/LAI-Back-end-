@@ -6,15 +6,18 @@ const cors = require("cors");
 
 router
   .get("/", palabrasController.index)
-  .get("/new")
-  .get("/my_words", auth , palabrasController.myWords)
+  .get("/my_words", auth, palabrasController.myWords)
   .get("/search", palabrasController.searchWord)
-  .get("/edit/:value",auth)
-  .post(
+  .get(
     "/edit/:value",
     auth,
     palabrasController.findWord,
     palabrasController.editWord
+  )
+  .post(
+    "/edit/:value",
+    auth,
+    palabrasController.updateWordUser
   )
   .delete(
     "/delete/:value",

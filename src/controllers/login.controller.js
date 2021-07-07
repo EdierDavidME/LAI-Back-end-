@@ -42,9 +42,8 @@ const login = async (req, res) => {
 
       if (data) {
         let userData = {
-          userId: data._id,
           username: data.username,
-          roles: data.roles,
+          roles: data.roles.name,
           token: service.createToken(data),
         };
         res.status(200).send({ userData });

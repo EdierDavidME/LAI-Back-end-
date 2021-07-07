@@ -7,7 +7,7 @@ const auth = (req, res, next) => {
     services
       .decodeToken(token)
       .then((response) => {
-        req.user = response;
+        req.userId = response;
         next();
       })
       .catch((response) => {
@@ -20,7 +20,6 @@ const auth = (req, res, next) => {
 const whitelist = ["http://localhost:4200", "http://localhost:3000/"];
 const corsOptions = {
   origin: (origin, callback) => {
-    console.log("+---------Origin: ", origin);
     if (whitelist.indexOf(origin) !== -1) callback(null, true);
     else callback(new Error("Not allowes by CORS"));
   },
